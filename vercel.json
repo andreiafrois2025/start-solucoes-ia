@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/imersaoianapratica",
+      "destination": "https://andreiafrois.tech",
+      "permanent": false
+    },
+    {
+      "source": "/imersaoianapratica/(.*)",
+      "destination": "https://andreiafrois.tech/$1",
+      "permanent": false
+    }
+  ]
+}
