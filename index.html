@@ -113,6 +113,17 @@
   .contato { text-align: center; }
   .contato .lead { margin: 0 auto 30px; }
   footer { border-top: 1px solid var(--line); padding: 34px 0; color: var(--mute); font-size: 14px; text-align: center; }
+
+  .g4 { grid-template-columns: repeat(4, 1fr); } .b3 { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 1000px) { .g4 { grid-template-columns: 1fr 1fr; } .b3 { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) {
+    html, body { overflow-x: hidden; }
+    .g4, .b3, .boxes { grid-template-columns: 1fr; }
+    section { padding: 60px 0; } .hero { padding: 60px 0; }
+    header .btn { display: none; }
+    .destaque { padding: 24px; } .card { padding: 22px; }
+    .hero .cta .btn { width: 100%; text-align: center; }
+  }
 </style>
 </head>
 <body>
@@ -146,13 +157,13 @@
   <span class="tag">O que fazemos</span>
   <h2>Soluções completas em Inteligência Artificial</h2>
   <p class="lead">Do desenvolvimento técnico ao treinamento prático, atendemos empresas e profissionais em toda a jornada com IA.</p>
-  <div class="grid" style="grid-template-columns:repeat(4,1fr)">
+  <div class="grid g4">
     <div class="card"><div style="font-size:30px;margin-bottom:10px">🤖</div><h3>Agentes de IA</h3><p>Assistentes inteligentes personalizados para automatizar atendimentos, organizar processos e executar tarefas com eficiência.</p></div>
     <div class="card"><div style="font-size:30px;margin-bottom:10px">⚙️</div><h3>Automações e integrações</h3><p>Fluxos automatizados que conectam sistemas, reduzem atividades manuais e aumentam a produtividade do dia a dia.</p></div>
     <div class="card"><div style="font-size:30px;margin-bottom:10px">🌐</div><h3>Aplicações com IA</h3><p>Aplicações e ferramentas inteligentes sob medida, adaptadas às necessidades do seu negócio ou projeto.</p></div>
     <div class="card"><div style="font-size:30px;margin-bottom:10px">🎓</div><h3>Capacitações</h3><p>Palestras, workshops, oficinas, imersões e mentorias com foco no uso prático da IA. <a href="#formatos" style="color:var(--cy)">Ver formatos →</a></p></div>
   </div>
-  <div class="boxes" style="grid-template-columns:repeat(3,1fr);margin-top:34px">
+  <div class="boxes b3" style="margin-top:34px">
     <div>✓ Reduz o tempo gasto em tarefas repetitivas</div><div>✓ Aumenta a produtividade sem aumentar a equipe</div><div>✓ Organiza fluxos e processos internos</div>
     <div>✓ Melhora a tomada de decisão</div><div>✓ Cria novas possibilidades de atuação e renda</div><div>✓ Escala operações com mais eficiência</div>
   </div>
