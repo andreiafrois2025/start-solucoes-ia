@@ -1,593 +1,330 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Start Soluções em IA | Agentes, Automações e Treinamentos</title>
-  <meta name="description" content="Transformamos Inteligência Artificial em soluções reais para negócios e profissionais. Agentes inteligentes, automações, aplicações e treinamentos práticos." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start Soluções em IA | Agentes, Automações e Capacitações</title>
+<meta name="description" content="Agentes inteligentes, automações e capacitações práticas em Inteligência Artificial para negócios, escolas e profissionais.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07111f; --bg2: #0b1a2c; --card: #0f2236; --line: #1c3550;
+    --txt: #e6eef7; --mute: #93a7bd; --cy: #22d3ee; --cy2: #0ea5b7; --ou: #f5b83d; --ok: #34d399;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--txt); font-family: Inter, sans-serif; font-size: 17px; line-height: 1.6; }
+  h1, h2, h3, .brand { font-family: 'Space Grotesk', sans-serif; line-height: 1.15; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: min(1240px, 92vw); margin: 0 auto; }
+  section { padding: 88px 0; }
+  section:nth-of-type(even) { background: var(--bg2); }
+  .tag { display: inline-block; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--cy); border: 1px solid #164e63; background: #082f3a; padding: 6px 14px; border-radius: 99px; margin-bottom: 18px; }
+  h2 { font-size: clamp(30px, 4vw, 44px); margin-bottom: 14px; }
+  .lead { color: var(--mute); max-width: 760px; font-size: 18px; }
+  .btn { display: inline-block; padding: 14px 24px; border-radius: 10px; font-weight: 600; font-size: 16px; transition: transform .15s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.cy { background: var(--cy); color: #04222a; }
+  .btn.ou { background: var(--ou); color: #2a1a00; }
+  .btn.gh { border: 1px solid var(--line); color: var(--txt); }
 
-    :root {
-      --bg: #050c1a;
-      --surface: #0a1628;
-      --surface2: #0f1e35;
-      --border: rgba(0,212,232,0.12);
-      --primary: #00d4e8;
-      --primary-dim: rgba(0,212,232,0.1);
-      --gold: #f0b429;
-      --gold-dim: rgba(240,180,41,0.1);
-      --purple: #7c63f5;
-      --purple-dim: rgba(124,99,245,0.1);
-      --text: #e2e8f0;
-      --muted: #7a8fab;
-      --heading: 'Space Grotesk', sans-serif;
-      --body: 'Inter', sans-serif;
-    }
+  /* topo */
+  header { position: sticky; top: 0; z-index: 10; background: rgba(7,17,31,.88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 20px; }
+  .brand { font-weight: 700; font-size: 19px; } .brand b { color: var(--cy); }
+  nav { display: flex; gap: 26px; font-size: 15px; color: var(--mute); } nav a:hover { color: var(--txt); }
+  @media (max-width: 900px) { nav { display: none; } }
 
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--body); line-height: 1.6; overflow-x: hidden; }
+  /* hero */
+  .hero { padding: 110px 0 90px; background: radial-gradient(1000px 500px at 70% -10%, #0e3a52 0%, transparent 60%), var(--bg); }
+  .hero .wrap { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: center; }
+  .hero h1 { font-size: clamp(38px, 5.2vw, 64px); margin-bottom: 22px; } .hero h1 span { color: var(--cy); }
+  .hero p { color: var(--mute); font-size: 19px; margin-bottom: 30px; max-width: 640px; }
+  .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+  .chips span { font-size: 14px; color: var(--mute); border: 1px solid var(--line); padding: 7px 13px; border-radius: 99px; }
+  .destaque { background: linear-gradient(160deg, #10304a, #0c1d31); border: 1px solid #1f4d6b; border-radius: 22px; padding: 34px; }
+  .destaque .k { color: var(--ou); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; }
+  .destaque h3 { font-size: 30px; margin: 10px 0 8px; }
+  .destaque ul { list-style: none; margin: 18px 0 24px; color: var(--mute); } .destaque li { padding: 5px 0 5px 26px; position: relative; }
+  .destaque li::before { content: '✓'; position: absolute; left: 0; color: var(--ok); font-weight: 700; }
+  .preco { font-family: 'Space Grotesk'; font-size: 40px; font-weight: 700; } .preco s { font-size: 20px; color: var(--mute); font-weight: 400; margin-left: 8px; }
+  @media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; } }
 
-    /* ── CANVAS ── */
-    #bg-canvas { position: fixed; inset: 0; z-index: 0; opacity: 0.35; pointer-events: none; }
+  /* formatos */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  @media (max-width: 1000px) { .grid { grid-template-columns: 1fr 1fr; } } @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px; display: flex; flex-direction: column; }
+  .card .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .pill { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--cy); background: #082f3a; padding: 5px 11px; border-radius: 99px; }
+  .pill.ou { color: var(--ou); background: #3a2a06; }
+  .dur { color: var(--mute); font-size: 14px; }
+  .card h3 { font-size: 22px; margin-bottom: 6px; } .card .sub { color: var(--cy); font-size: 14px; margin-bottom: 12px; }
+  .card p { color: var(--mute); font-size: 15.5px; flex: 1; }
+  .card .pr { margin-top: 18px; font-weight: 600; font-size: 15px; color: var(--txt); }
 
-    /* ── LAYOUT ── */
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 1; }
-    section { position: relative; z-index: 1; }
+  /* comparativo */
+  .tab { margin-top: 36px; overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; }
+  table { width: 100%; border-collapse: collapse; min-width: 860px; font-size: 15px; }
+  th, td { padding: 14px 16px; border-bottom: 1px solid var(--line); text-align: center; }
+  th { background: var(--card); font-family: 'Space Grotesk'; font-weight: 600; font-size: 14px; } th small { display: block; color: var(--mute); font-weight: 400; }
+  td:first-child, th:first-child { text-align: left; }
+  .s { color: var(--ok); font-weight: 700; } .p { color: var(--ou); } .n { color: #4b6077; }
+  .leg { display: flex; gap: 22px; color: var(--mute); font-size: 14px; margin-top: 18px; }
 
-    /* ── TYPOGRAPHY ── */
-    h1,h2,h3,h4 { font-family: var(--heading); font-weight: 700; line-height: 1.2; }
-    h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
-    h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
-    h3 { font-size: 1.15rem; }
-    p { color: var(--muted); }
+  /* recomendador */
+  .rec { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 34px; }
+  @media (max-width: 800px) { .rec { grid-template-columns: 1fr; } }
+  .q { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
+  .q p { margin-bottom: 12px; } .q button { font: inherit; font-size: 15px; background: transparent; color: var(--txt); border: 1px solid var(--line); border-radius: 99px; padding: 6px 18px; margin-right: 8px; cursor: pointer; }
+  .q button.on { background: var(--cy); color: #04222a; border-color: var(--cy); }
+  #res { margin-top: 22px; padding: 24px 26px; border-radius: 16px; border: 1px dashed #1f4d6b; color: var(--mute); }
+  #res b { color: var(--cy); font-size: 20px; font-family: 'Space Grotesk'; }
 
-    /* ── BADGE ── */
-    .badge {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      background: var(--primary-dim); border: 1px solid var(--border);
-      color: var(--primary); font-size: 0.75rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 0.35rem 1rem; border-radius: 999px;
-    }
+  /* turma */
+  .turma { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 36px; }
+  @media (max-width: 900px) { .turma { grid-template-columns: 1fr; } }
+  .enc { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; margin-bottom: 14px; }
+  .enc h4 { font-family: 'Space Grotesk'; font-size: 18px; margin-bottom: 6px; } .enc h4 span { color: var(--cy); margin-right: 8px; }
+  .enc p { color: var(--mute); font-size: 15.5px; }
+  .lista { list-style: none; } .lista li { padding: 8px 0 8px 28px; position: relative; color: var(--mute); }
+  .lista li::before { content: '✓'; position: absolute; left: 0; color: var(--ok); font-weight: 700; }
 
-    /* ── BUTTONS ── */
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.75rem 1.75rem; border-radius: 0.6rem;
-      font-family: var(--heading); font-size: 0.95rem; font-weight: 600;
-      text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
-    }
-    .btn-primary { background: var(--primary); color: #050c1a; }
-    .btn-primary:hover { background: #00bcd4; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,212,232,0.3); }
-    .btn-outline { background: transparent; color: var(--primary); border: 1.5px solid var(--border); }
-    .btn-outline:hover { background: var(--primary-dim); transform: translateY(-2px); }
-    .btn-ghost { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
-    .btn-ghost:hover { background: var(--surface); transform: translateY(-2px); }
-    .btn-gold { background: var(--gold); color: #050c1a; }
-    .btn-gold:hover { background: #e0a820; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(240,180,41,0.3); }
-    .btn-whatsapp { background: #25d366; color: #fff; }
-    .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
+  /* faq */
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; margin-top: 12px; }
+  summary { cursor: pointer; font-weight: 600; } details p { color: var(--mute); margin-top: 10px; }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(5,12,26,0.85); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .nav-logo { font-family: var(--heading); font-size: 1.05rem; font-weight: 700; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
-    .nav-logo span { color: var(--primary); }
-    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--text); }
-    .nav-cta { display: flex; gap: 0.75rem; align-items: center; }
-    @media (max-width: 768px) { .nav-links { display: none; } }
+  /* equipe */
+  .eq { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  @media (max-width: 800px) { .eq { grid-template-columns: 1fr; } }
+  .pes { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 30px; }
+  .av { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-family: 'Space Grotesk'; font-weight: 700; font-size: 22px; border: 2px solid var(--cy); color: var(--cy); margin-bottom: 14px; }
+  .av.ou { border-color: var(--ou); color: var(--ou); }
+  .pes h3 { font-size: 22px; } .pes .papel { color: var(--cy); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; margin: 4px 0 12px; font-weight: 600; }
+  .pes p { color: var(--mute); font-size: 15.5px; }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh; display: flex; align-items: center;
-      padding: 7rem 0 4rem;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,232,0.06) 0%, transparent 70%);
-    }
-    .hero-content { max-width: 760px; margin: 0 auto; text-align: center; }
-    .hero h1 { color: var(--text); margin: 1rem 0 1.25rem; }
-    .hero h1 span { color: var(--primary); }
-    .hero p { font-size: 1.1rem; max-width: 600px; margin: 0 auto 2.5rem; }
-    .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-    .hero-dots {
-      display: flex; gap: 2rem; justify-content: center; margin-top: 3rem;
-      flex-wrap: wrap;
-    }
-    .hero-dot { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--muted); }
-    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); }
+  /* logística e limites */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; margin-top: 30px; }
+  @media (max-width: 900px) { .duo { grid-template-columns: 1fr; } }
+  .boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .boxes div { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; font-size: 15px; color: var(--mute); }
 
-    /* ── SECTION COMMON ── */
-    .section { padding: 5rem 0; }
-    .section-alt { background: var(--surface); }
-    .section-header { text-align: center; margin-bottom: 3.5rem; }
-    .section-header h2 { color: var(--text); margin-top: 0.75rem; }
-    .section-header p { max-width: 560px; margin: 0.75rem auto 0; }
-
-    /* ── SERVICES GRID ── */
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-    .service-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 1rem; padding: 2rem 1.75rem;
-      transition: all 0.3s; position: relative; overflow: hidden;
-    }
-    .service-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--primary), transparent);
-      opacity: 0; transition: opacity 0.3s;
-    }
-    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,212,232,0.08); border-color: rgba(0,212,232,0.25); }
-    .service-card:hover::before { opacity: 1; }
-    .service-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .service-card h3 { color: var(--text); margin-bottom: 0.5rem; }
-
-    /* ── FOR WHO ── */
-    .forwho-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
-    .forwho-item {
-      display: flex; align-items: flex-start; gap: 0.75rem;
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 0.75rem; padding: 1.25rem 1.5rem;
-    }
-    .forwho-check { color: var(--primary); font-size: 1.1rem; margin-top: 0.1rem; flex-shrink: 0; }
-    .forwho-item p { color: var(--text); font-size: 0.95rem; margin: 0; }
-
-    /* ── BENEFITS ── */
-    .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
-    .benefit-item {
-      display: flex; align-items: center; gap: 0.75rem;
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 0.75rem; padding: 1.1rem 1.4rem;
-    }
-    .benefit-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0; }
-    .benefit-item span { color: var(--text); font-size: 0.95rem; }
-
-    /* ── HOW IT WORKS ── */
-    .steps { display: flex; flex-direction: column; gap: 1rem; max-width: 640px; margin: 0 auto; }
-    .step {
-      display: flex; align-items: flex-start; gap: 1.25rem;
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 0.75rem; padding: 1.25rem 1.5rem;
-      transition: all 0.2s;
-    }
-    .step:hover { border-color: rgba(0,212,232,0.3); }
-    .step-num {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: var(--primary-dim); border: 1.5px solid var(--border);
-      color: var(--primary); font-family: var(--heading); font-weight: 700;
-      font-size: 0.9rem; display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .step-text { color: var(--text); font-size: 0.95rem; padding-top: 0.4rem; }
-
-    /* ── EXAMPLES ── */
-    .examples-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
-    .example-item {
-      display: flex; align-items: center; gap: 0.75rem;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 0.75rem; padding: 1.1rem 1.4rem;
-      transition: all 0.2s;
-    }
-    .example-item:hover { border-color: rgba(124,99,245,0.35); background: var(--purple-dim); }
-    .example-icon { font-size: 1.3rem; flex-shrink: 0; }
-    .example-item span { color: var(--text); font-size: 0.9rem; }
-
-    /* ── TEAM ── */
-    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 760px; margin: 0 auto; }
-    .team-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 1rem; padding: 2rem; text-align: center;
-    }
-    .team-avatar {
-      width: 80px; height: 80px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary-dim), var(--purple-dim));
-      border: 2px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--heading); font-size: 1.75rem; font-weight: 700;
-      color: var(--primary); margin: 0 auto 1.25rem;
-    }
-    .team-card h3 { color: var(--text); margin-bottom: 0.25rem; }
-    .team-role { color: var(--primary); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.75rem; }
-    .team-bio { font-size: 0.9rem; line-height: 1.65; }
-
-    /* ── POSITIONING ── */
-    .positioning {
-      text-align: center; padding: 3rem 1.5rem;
-      background: linear-gradient(135deg, var(--primary-dim), var(--purple-dim));
-      border: 1px solid var(--border); border-radius: 1.25rem;
-      max-width: 700px; margin: 3rem auto 0;
-    }
-    .positioning p { font-size: 1.2rem; font-style: italic; color: var(--text); font-weight: 500; }
-
-    /* ── TRAINING ── */
-    .training-card {
-      max-width: 680px; margin: 0 auto;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 1.25rem; padding: 2.5rem; overflow: hidden; position: relative;
-    }
-    .training-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--purple));
-    }
-    .training-badge {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      background: var(--gold-dim); border: 1px solid rgba(240,180,41,0.25);
-      color: var(--gold); font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 0.3rem 0.9rem; border-radius: 999px; margin-bottom: 1rem;
-    }
-    .training-card h3 { color: var(--text); font-size: 1.4rem; margin-bottom: 0.5rem; }
-    .training-card p { margin-bottom: 1.5rem; }
-
-    /* ── WHY US ── */
-    .whyus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; max-width: 800px; margin: 0 auto; }
-    .whyus-item {
-      display: flex; align-items: center; gap: 0.75rem;
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 0.75rem; padding: 1.1rem 1.4rem;
-    }
-    .whyus-icon { color: var(--gold); font-size: 1.1rem; flex-shrink: 0; }
-    .whyus-item span { color: var(--text); font-size: 0.92rem; }
-
-    /* ── CONTACT ── */
-    .contact-section {
-      background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(0,212,232,0.05) 0%, transparent 70%);
-    }
-    .contact-card {
-      max-width: 600px; margin: 0 auto; text-align: center;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 1.25rem; padding: 3rem 2rem;
-    }
-    .contact-card h2 { color: var(--text); margin-bottom: 0.75rem; }
-    .contact-card > p { margin-bottom: 2rem; }
-    .contact-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--surface); border-top: 1px solid var(--border);
-      padding: 2.5rem 0; text-align: center;
-    }
-    .footer-logo { font-family: var(--heading); font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
-    .footer-logo span { color: var(--primary); }
-    .footer-tagline { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.2rem; }
-    .footer-copy { font-size: 0.8rem; color: var(--muted); }
-
-    /* ── DIVIDER ── */
-    .divider {
-      width: 48px; height: 3px; border-radius: 2px;
-      background: linear-gradient(90deg, var(--primary), var(--purple));
-      margin: 0 auto 1rem;
-    }
-    .section-header .divider { margin-bottom: 0.75rem; }
-  </style>
+  .contato { text-align: center; }
+  .contato .lead { margin: 0 auto 30px; }
+  footer { border-top: 1px solid var(--line); padding: 34px 0; color: var(--mute); font-size: 14px; text-align: center; }
+</style>
 </head>
 <body>
 
-<!-- Background canvas -->
-<canvas id="bg-canvas"></canvas>
+<header><div class="wrap">
+  <a class="brand" href="#"><b>Start</b> Soluções IA</a>
+  <nav><a href="#solucoes">Soluções</a><a href="#formatos">Capacitações</a><a href="#turma">Turma aberta</a><a href="#como">Como funciona</a><a href="#equipe">Equipe</a><a href="#contato">Contato</a></nav>
+  <a class="btn cy" href="#contato" style="padding:10px 18px;font-size:15px">Falar com a gente</a>
+</div></header>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <span>Start</span> Soluções IA
-    </a>
-    <div class="nav-links">
-      <a href="#solucoes">Soluções</a>
-      <a href="#como-funciona">Como funciona</a>
-      <a href="#equipe">Equipe</a>
-      <a href="#treinamentos">Treinamentos</a>
-      <a href="#contato">Contato</a>
-    </div>
-    <div class="nav-cta">
-      <a href="#contato" class="btn btn-primary" style="padding:0.55rem 1.25rem;font-size:0.85rem;">Falar com a gente</a>
-    </div>
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="tag">Start Soluções em Inteligência Artificial</span>
+    <h1>Transformamos <span>Inteligência Artificial</span> em soluções reais para negócios e profissionais</h1>
+    <p>Criamos agentes inteligentes, automações e aplicações sob medida, e damos capacitações práticas para quem quer ganhar tempo, produtividade e escala com IA.</p>
+    <div class="cta"><a class="btn cy" href="#solucoes">Conhecer soluções</a><a class="btn gh" href="#formatos">Ver capacitações</a></div>
+    <div class="chips"><span>Agentes inteligentes</span><span>Automações</span><span>Aplicações com IA</span><span>Palestras e treinamentos</span></div>
   </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-content">
-      <div class="badge">🌐 Start Soluções em Inteligência Artificial</div>
-      <h1>Transformamos <span>Inteligência Artificial</span> em soluções reais para negócios e profissionais</h1>
-      <p>Criamos agentes inteligentes, automações e aplicações sob medida, além de treinamentos práticos para quem quer ganhar tempo, produtividade e escala com IA.</p>
-      <div class="hero-btns">
-        <a href="#solucoes" class="btn btn-primary">Conhecer soluções</a>
-        <a href="#treinamentos" class="btn btn-outline">Ver treinamentos</a>
-        <a href="#contato" class="btn btn-ghost">Falar com a gente</a>
-      </div>
-      <div class="hero-dots">
-        <div class="hero-dot"><div class="dot"></div> Agentes Inteligentes</div>
-        <div class="hero-dot"><div class="dot"></div> Automações</div>
-        <div class="hero-dot"><div class="dot"></div> Aplicações com IA</div>
-        <div class="hero-dot"><div class="dot"></div> Treinamentos</div>
-      </div>
-    </div>
+  <div class="destaque">
+    <div class="k">🔥 Turma aberta · vagas limitadas</div>
+    <h3>IA no dia a dia</h3>
+    <div style="color:var(--mute)">3 noites ao vivo e online, às 19h30, para quem quer usar IA no dia a dia começando do zero.</div>
+    <ul><li>Pedir do jeito certo e receber resposta útil</li><li>Escrever e-mail e texto em minutos, com a sua cara</li><li>Organizar a semana com ajuda da IA</li></ul>
+    <div class="preco">R$ 127 <s>R$ 197</s></div>
+    <div style="color:var(--mute);font-size:14px;margin:4px 0 20px">3, 4 e 5/11 · 19h30 · preço de lançamento</div>
+    <a class="btn ou" href="#turma">Quero minha vaga</a>
   </div>
-</section>
+</div></section>
 
-<!-- O QUE FAZEMOS -->
-<section class="section section-alt" id="solucoes">
-  <div class="container">
-    <div class="section-header">
-      <div class="divider"></div>
-      <div class="badge">🚀 O que fazemos</div>
-      <h2>Soluções completas em Inteligência Artificial</h2>
-      <p>Do desenvolvimento técnico ao treinamento prático, atendemos empresas e profissionais em toda a jornada com IA.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">🤖</div>
-        <h3>Agentes de Inteligência Artificial</h3>
-        <p>Desenvolvemos assistentes inteligentes personalizados para automatizar atendimentos, organizar processos e executar tarefas com eficiência.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">⚙️</div>
-        <h3>Automações e Integrações</h3>
-        <p>Criamos fluxos automatizados que conectam sistemas, reduzem atividades manuais e aumentam a produtividade do seu dia a dia.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🌐</div>
-        <h3>Aplicações e Soluções com IA</h3>
-        <p>Desenvolvemos aplicações e ferramentas inteligentes sob medida, adaptadas às necessidades do seu negócio ou projeto.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🎓</div>
-        <h3>Treinamentos e Capacitações</h3>
-        <p>Oferecemos cursos, imersões e palestras com foco na aplicação prática da inteligência artificial no dia a dia profissional.</p>
-      </div>
-    </div>
+<section id="solucoes"><div class="wrap">
+  <span class="tag">O que fazemos</span>
+  <h2>Soluções completas em Inteligência Artificial</h2>
+  <p class="lead">Do desenvolvimento técnico ao treinamento prático, atendemos empresas e profissionais em toda a jornada com IA.</p>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="card"><div style="font-size:30px;margin-bottom:10px">🤖</div><h3>Agentes de IA</h3><p>Assistentes inteligentes personalizados para automatizar atendimentos, organizar processos e executar tarefas com eficiência.</p></div>
+    <div class="card"><div style="font-size:30px;margin-bottom:10px">⚙️</div><h3>Automações e integrações</h3><p>Fluxos automatizados que conectam sistemas, reduzem atividades manuais e aumentam a produtividade do dia a dia.</p></div>
+    <div class="card"><div style="font-size:30px;margin-bottom:10px">🌐</div><h3>Aplicações com IA</h3><p>Aplicações e ferramentas inteligentes sob medida, adaptadas às necessidades do seu negócio ou projeto.</p></div>
+    <div class="card"><div style="font-size:30px;margin-bottom:10px">🎓</div><h3>Capacitações</h3><p>Palestras, workshops, oficinas, imersões e mentorias com foco no uso prático da IA. <a href="#formatos" style="color:var(--cy)">Ver formatos →</a></p></div>
   </div>
-</section>
-
-<!-- PARA QUEM É -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <div class="divider"></div>
-      <div class="badge">🎯 Para quem é</div>
-      <h2>Nossas soluções são ideais para</h2>
-    </div>
-    <div class="forwho-grid">
-      <div class="forwho-item"><span class="forwho-check">✓</span><p>Empresas que querem automatizar processos</p></div>
-      <div class="forwho-item"><span class="forwho-check">✓</span><p>Profissionais que buscam produtividade e organização</p></div>
-      <div class="forwho-item"><span class="forwho-check">✓</span><p>Criadores de conteúdo que querem escalar sua produção</p></div>
-      <div class="forwho-item"><span class="forwho-check">✓</span><p>Gestores que precisam tomar decisões com mais agilidade</p></div>
-      <div class="forwho-item"><span class="forwho-check">✓</span><p>Pessoas que querem aprender IA de forma prática e aplicável</p></div>
-    </div>
+  <div class="boxes" style="grid-template-columns:repeat(3,1fr);margin-top:34px">
+    <div>✓ Reduz o tempo gasto em tarefas repetitivas</div><div>✓ Aumenta a produtividade sem aumentar a equipe</div><div>✓ Organiza fluxos e processos internos</div>
+    <div>✓ Melhora a tomada de decisão</div><div>✓ Cria novas possibilidades de atuação e renda</div><div>✓ Escala operações com mais eficiência</div>
   </div>
-</section>
+</div></section>
 
-<!-- COMO A IA PODE TE AJUDAR -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-header">
-      <div class="divider"></div>
-      <div class="badge">💡 Como a IA pode te ajudar</div>
-      <h2>Resultados concretos para o seu negócio</h2>
-    </div>
-    <div class="benefits-grid">
-      <div class="benefit-item"><div class="benefit-dot"></div><span>Reduz o tempo gasto em tarefas repetitivas</span></div>
-      <div class="benefit-item"><div class="benefit-dot"></div><span>Aumenta produtividade sem aumentar equipe</span></div>
-      <div class="benefit-item"><div class="benefit-dot"></div><span>Organiza fluxos e processos internos</span></div>
-      <div class="benefit-item"><div class="benefit-dot"></div><span>Melhora a tomada de decisão</span></div>
-      <div class="benefit-item"><div class="benefit-dot"></div><span>Cria novas possibilidades de atuação e renda</span></div>
-      <div class="benefit-item"><div class="benefit-dot"></div><span>Escala operações com mais eficiência</span></div>
-    </div>
+<section id="formatos"><div class="wrap">
+  <span class="tag">Capacitações</span>
+  <h2>Aprenda IA com quem aplica no dia a dia</h2>
+  <p class="lead">Da conversa de sensibilização ao acompanhamento individual. Todos com demonstração ao vivo e foco no que a pessoa vai usar na semana seguinte.</p>
+  <div class="grid">
+    <div class="card"><div class="top"><span class="pill">Palestra</span><span class="dur">1h a 1h30</span></div>
+      <h3>IA no trabalho: possibilidades, limites e cuidados</h3><div class="sub">Sensibilização para equipes e eventos</div>
+      <p>Um panorama claro do que a IA já faz, onde ela erra e como usar com segurança. Ideal para abrir o tema numa empresa, escola ou associação.</p><div class="pr">Sob consulta</div></div>
+    <div class="card"><div class="top"><span class="pill">Workshop</span><span class="dur">3h</span></div>
+      <h3>IA na prática: primeiros passos</h3><div class="sub">Palestra demonstrativa com exercícios</div>
+      <p>Conceitos essenciais e demonstrações ao vivo em tarefas reais do grupo: textos, atendimento, organização e ideias.</p><div class="pr">Sob consulta</div></div>
+    <div class="card"><div class="top"><span class="pill">Oficina</span><span class="dur">6h</span></div>
+      <h3>Oficina de IA aplicada à rotina</h3><div class="sub">Mão na massa, com notebook</div>
+      <p>Cada participante sai com um assistente simples montado para a própria rotina de trabalho.</p><div class="pr">Sob consulta</div></div>
+    <div class="card"><div class="top"><span class="pill">Imersão in company</span><span class="dur">2 dias</span></div>
+      <h3>Imersão para equipes</h3><div class="sub">Teoria, demonstração e prática</div>
+      <p>Formação introdutória completa: fundamentos, ChatGPT, Claude e ferramentas complementares, produção visual e construção guiada.</p><div class="pr">Sob consulta</div></div>
+    <div class="card"><div class="top"><span class="pill ou">Turma aberta</span><span class="dur">3 noites</span></div>
+      <h3>IA no dia a dia</h3><div class="sub">Online e ao vivo, para iniciantes</div>
+      <p>Turma online para quem nunca usou IA ou usou e travou. Exercício prático em cada encontro e tempo para dúvidas.</p><div class="pr">R$ 127 no lançamento · <a href="#turma" style="color:var(--cy)">ver detalhes →</a></div></div>
+    <div class="card"><div class="top"><span class="pill ou">Individual</span><span class="dur">Online</span></div>
+      <h3>Mentoria Canva + IA</h3><div class="sub">Conteúdo para o seu perfil ou negócio</div>
+      <p>Só você e a Andréia: ChatGPT para ideias, Claude para as legendas e Canva para as artes, adaptado ao seu caso.</p><div class="pr">R$ 450</div></div>
   </div>
-</section>
+</div></section>
 
-<!-- COMO FUNCIONA -->
-<section class="section" id="como-funciona">
-  <div class="container">
-    <div class="section-header">
-      <div class="divider"></div>
-      <div class="badge">🧩 Como funciona</div>
-      <h2>Do entendimento à entrega</h2>
-      <p>Um processo claro, focado em resultado real para o seu negócio.</p>
-    </div>
-    <div class="steps">
-      <div class="step"><div class="step-num">1</div><div class="step-text">Entendemos sua necessidade ou objetivo</div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-text">Definimos a melhor solução com IA</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-text">Desenvolvemos e implementamos a solução</div></div>
-      <div class="step"><div class="step-num">4</div><div class="step-text">Entregamos e orientamos o uso</div></div>
-      <div class="step"><div class="step-num">5</div><div class="step-text">Acompanhamos os resultados</div></div>
-    </div>
-  </div>
-</section>
 
-<!-- EXEMPLOS DE APLICAÇÃO -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-header">
-      <div class="divider"></div>
-      <div class="badge">🧪 Exemplos de aplicação</div>
-      <h2>IA na prática, em diversos contextos</h2>
-    </div>
-    <div class="examples-grid">
-      <div class="example-item"><span class="example-icon">💬</span><span>Atendimento automatizado via WhatsApp</span></div>
-      <div class="example-item"><span class="example-icon">👥</span><span>Assistentes internos para equipes</span></div>
-      <div class="example-item"><span class="example-icon">✍️</span><span>Geração de conteúdo com IA</span></div>
-      <div class="example-item"><span class="example-icon">📊</span><span>Análise de dados e apoio à decisão</span></div>
-      <div class="example-item"><span class="example-icon">⚙️</span><span>Organização e automação de processos</span></div>
-      <div class="example-item"><span class="example-icon">🖥️</span><span>Criação de sistemas e dashboards inteligentes</span></div>
-    </div>
-  </div>
-</section>
 
-<!-- EQUIPE -->
-<section class="section" id="equipe">
-  <div class="container">
-    <div class="section-header">
-      <div class="divider"></div>
-      <div class="badge">👥 Quem está por trás</div>
-      <h2>A equipe Start</h2>
+<section id="turma"><div class="wrap">
+  <span class="tag">Turma aberta</span>
+  <h2>IA no dia a dia</h2>
+  <p class="lead">Uma turma ao vivo e online, em 3 noites, para você aprender a usar a inteligência artificial nas tarefas de verdade, mesmo começando do zero.</p>
+  <div class="turma">
+    <div>
+      <div class="enc"><h4><span>1</span>Perdendo o medo e pedindo do jeito certo</h4><p>O que a IA faz bem e o que ela erra. Como escrever um pedido (o "prompt", que é só a instrução que você dá) para receber uma resposta útil. Exercício com um caso seu.</p></div>
+      <div class="enc"><h4><span>2</span>Escrever mais rápido, com a sua cara</h4><p>E-mails, mensagens e textos em minutos. Ajustar o tom, encurtar, corrigir e revisar antes de usar, porque a IA também erra.</p></div>
+      <div class="enc"><h4><span>3</span>Organizar a rotina</h4><p>Planejar a semana, listar tarefas, resumir assuntos longos e montar o seu roteiro de uso no dia a dia.</p></div>
     </div>
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="team-avatar">H</div>
-        <h3>Hwaendrix</h3>
-        <div class="team-role">Arquiteto de Soluções em IA</div>
-        <p class="team-bio">Responsável pelo desenvolvimento técnico das soluções, atuando na criação de agentes inteligentes, automações, integrações e aplicações personalizadas.</p>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar" style="color:var(--gold);background:linear-gradient(135deg,var(--gold-dim),var(--primary-dim));">A</div>
-        <h3>Andréia Frois</h3>
-        <div class="team-role" style="color:var(--gold);">Especialista em Aplicação Prática de IA</div>
-        <p class="team-bio">Atua na capacitação de profissionais e equipes, com foco em transformar o uso da inteligência artificial em resultados reais no dia a dia.</p>
-      </div>
-    </div>
-    <div class="positioning">
-      <p>"Unimos tecnologia e aplicação prática para transformar inteligência artificial em resultado real."</p>
-    </div>
-  </div>
-</section>
-
-<!-- TREINAMENTOS -->
-<section class="section section-alt" id="treinamentos">
-  <div class="container">
-    <div class="section-header">
-      <div class="divider"></div>
-      <div class="badge">📚 Treinamentos e conteúdos</div>
-      <h2>Aprenda IA com quem aplica no dia a dia</h2>
-    </div>
-    <div class="training-card">
-      <div class="training-badge">🔥 Em destaque</div>
-      <h3>Imersão IA na Prática</h3>
-      <p>Aprenda a utilizar inteligência artificial no dia a dia de forma simples, estratégica e aplicável. Uma experiência prática para quem quer sair do básico e começar a usar IA com clareza e resultado.</p>
-      <a href="/imersaoianapratica" class="btn btn-gold">Acessar página da imersão →</a>
-    </div>
-  </div>
-</section>
-
-<!-- POR QUE ESCOLHER -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <div class="divider"></div>
-      <div class="badge">📣 Por que escolher a Start</div>
-      <h2>Nossos diferenciais</h2>
-    </div>
-    <div class="whyus-grid">
-      <div class="whyus-item"><span class="whyus-icon">★</span><span>Soluções personalizadas, não genéricas</span></div>
-      <div class="whyus-item"><span class="whyus-icon">★</span><span>Foco em aplicação prática, não teoria</span></div>
-      <div class="whyus-item"><span class="whyus-icon">★</span><span>Integração entre tecnologia e uso real</span></div>
-      <div class="whyus-item"><span class="whyus-icon">★</span><span>Atendimento próximo e estratégico</span></div>
-      <div class="whyus-item"><span class="whyus-icon">★</span><span>Experiência com demandas reais de trabalho</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTATO -->
-<section class="section contact-section" id="contato">
-  <div class="container">
-    <div class="contact-card">
-      <h2>Fale com a gente</h2>
-      <p>Quer entender como a inteligência artificial pode ajudar no seu caso? Entre em contato e vamos conversar.</p>
-      <div class="contact-btns">
-        <a href="#" class="btn btn-whatsapp">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.057 23.882a.5.5 0 0 0 .611.611l6.054-1.473A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.677-.526-5.198-1.437l-.372-.218-3.853.937.958-3.832-.234-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-          WhatsApp
-        </a>
-        <a href="#" class="btn btn-outline">
-          ✉️ E-mail
-        </a>
-        <a href="https://instagram.com/andreiarfrois" target="_blank" class="btn btn-ghost">
-          📸 @andreiarfrois
-        </a>
+    <div>
+      <h3 style="font-size:22px;margin-bottom:10px">Para quem é</h3>
+      <ul class="lista"><li>Quem nunca usou IA e não sabe por onde começar</li><li>Quem abriu o ChatGPT, não soube o que pedir e desistiu</li><li>Quem trabalha, estuda ou tem um pequeno negócio e está sem tempo</li><li>Quem acha que "não é de tecnologia". Aqui ninguém precisa ser</li></ul>
+      <h3 style="font-size:22px;margin:26px 0 10px">Como funciona</h3>
+      <ul class="lista"><li>3 encontros ao vivo e online, das 19h30 às 21h</li><li>Datas: 3, 4 e 5 de novembro (terça a quinta), 19h30</li><li>Turma pequena, com tempo para perguntas</li><li>Ferramentas gratuitas, para você repetir sozinha depois</li></ul>
+      <div class="destaque" style="margin-top:26px;padding:26px">
+        <div class="preco">R$ 127 <s>R$ 197</s></div>
+        <div style="color:var(--mute);font-size:15px;margin:6px 0 18px">Lançamento até 02/11 · vagas limitadas</div>
+        <a class="btn ou" href="https://pay.kiwify.com.br/5h5M0Ul" target="_blank">Garantir minha vaga</a>
+        <div style="margin-top:14px;font-size:15px;color:var(--mute)">Pagamento seguro pela Kiwify · cartão ou Pix · garantia de 7 dias</div>
       </div>
     </div>
   </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-logo"><span>Start</span> Soluções em Inteligência Artificial</div>
-    <div class="footer-tagline">Soluções em IA | Automações | Aplicações | Treinamentos</div>
-    <div class="footer-copy">© <span id="year"></span> Start Soluções em IA. Todos os direitos reservados.</div>
+  <div style="margin-top:40px;max-width:900px">
+    <details><summary>Eu nunca usei IA. Vou conseguir acompanhar?</summary><p>Sim. A turma é pensada para quem está começando do zero. Cada termo é explicado e a gente pratica junto.</p></details>
+    <details><summary>Preciso pagar alguma ferramenta?</summary><p>Não. Usamos as versões gratuitas, para você continuar usando depois.</p></details>
+    <details><summary>E se eu não puder estar em algum encontro?</summary><p>Fale com a gente: a gente te ajuda a não perder o conteúdo.</p></details>
+    <details><summary>Como garanto a minha vaga?</summary><p>Clique em "Garantir minha vaga" e pague pela Kiwify, com cartão ou Pix. Você recebe a confirmação e o link dos encontros por e-mail.</p></details>
+    <details><summary>E se eu não gostar?</summary><p>Você tem 7 dias de garantia: se não gostar, pede o reembolso direto pela Kiwify.</p></details>
   </div>
-</footer>
+</div></section>
+
+<section id="comparativo"><div class="wrap">
+  <span class="tag">Comparativo</span>
+  <h2>O que cada formato inclui</h2>
+  <div class="tab"><table>
+    <tr><th>Item</th><th>Palestra<small>1h a 1h30</small></th><th>Workshop<small>3h</small></th><th>Oficina<small>6h</small></th><th>Imersão equipes<small>2 dias</small></th><th>Turma online<small>3 noites</small></th><th>Mentoria<small>individual</small></th></tr>
+    <tr><td>Panorama e possibilidades da IA</td><td class="s">●</td><td class="s">●</td><td class="s">●</td><td class="s">●</td><td class="s">●</td><td class="p">◐</td></tr>
+    <tr><td>Limites, ética e cuidados com dados</td><td class="s">●</td><td class="s">●</td><td class="s">●</td><td class="s">●</td><td class="s">●</td><td class="p">◐</td></tr>
+    <tr><td>Demonstrações ao vivo no ChatGPT e no Claude</td><td class="p">◐</td><td class="s">●</td><td class="s">●</td><td class="s">●</td><td class="s">●</td><td class="s">●</td></tr>
+    <tr><td>Exercícios práticos</td><td class="n">○</td><td class="s">●</td><td class="s">●</td><td class="s">●</td><td class="s">●</td><td class="s">●</td></tr>
+    <tr><td>Outras ferramentas (NotebookLM, Perplexity, Gemini, Gamma)</td><td class="n">○</td><td class="p">◐</td><td class="s">●</td><td class="s">●</td><td class="p">◐</td><td class="p">◐</td></tr>
+    <tr><td>Produção visual com IA</td><td class="n">○</td><td class="n">○</td><td class="p">◐</td><td class="s">●</td><td class="n">○</td><td class="s">●</td></tr>
+    <tr><td>Construção guiada de assistente</td><td class="n">○</td><td class="n">○</td><td class="s">●</td><td class="s">●</td><td class="n">○</td><td class="p">◐</td></tr>
+    <tr><td>Adaptação ao seu caso ou área</td><td class="p">◐</td><td class="p">◐</td><td class="s">●</td><td class="s">●</td><td class="p">◐</td><td class="s">●</td></tr>
+  </table></div>
+  <div class="leg"><span><span class="s">●</span> incluído</span><span><span class="p">◐</span> parcial / adaptável</span><span><span class="n">○</span> não incluído</span></div>
+</div></section>
+
+<section id="recomendador"><div class="wrap">
+  <span class="tag">Recomendador</span>
+  <h2>Qual formato é ideal para você ou sua equipe?</h2>
+  <p class="lead">Responda cinco perguntas rápidas.</p>
+  <div class="rec" id="perg"></div>
+  <div id="res">Responda as perguntas para ver a recomendação.</div>
+</div></section>
+
+<section id="como"><div class="wrap">
+  <span class="tag">Como funciona</span>
+  <h2>Do entendimento à entrega</h2>
+  <div class="duo">
+    <div>
+      <div class="enc"><h4><span>1</span>Entendemos sua necessidade ou objetivo</h4></div>
+      <div class="enc"><h4><span>2</span>Definimos a melhor solução com IA</h4></div>
+      <div class="enc"><h4><span>3</span>Desenvolvemos e implementamos a solução</h4></div>
+      <div class="enc"><h4><span>4</span>Entregamos e orientamos o uso</h4></div>
+      <div class="enc"><h4><span>5</span>Acompanhamos os resultados</h4></div>
+    </div>
+    <div>
+      <p class="lead" style="margin-bottom:18px">IA na prática, em diversos contextos:</p>
+      <div class="boxes"><div>💬 Atendimento automatizado via WhatsApp</div><div>👥 Assistentes internos para equipes</div><div>✍️ Geração de conteúdo com IA</div><div>📊 Análise de dados e apoio à decisão</div><div>⚙️ Organização e automação de processos</div><div>🖥️ Sistemas e dashboards inteligentes</div></div>
+      <p style="color:var(--mute);margin-top:22px;font-style:italic;font-size:18px">"Unimos tecnologia e aplicação prática para transformar inteligência artificial em resultado real."</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="equipe"><div class="wrap">
+  <span class="tag">Quem está por trás</span>
+  <h2>A equipe Start</h2>
+  <div class="eq">
+    <div class="pes"><div class="av">H</div><h3>Hwaendrix</h3><div class="papel">Arquiteto de soluções em IA</div>
+      <p>Responsável pelo desenvolvimento técnico das soluções, atuando na criação de agentes inteligentes, automações, integrações e aplicações personalizadas.</p></div>
+    <div class="pes"><div class="av ou">A</div><h3>Andréia Frois</h3><div class="papel" style="color:var(--ou)">Especialista em aplicação prática de IA</div>
+      <p>Educadora em inteligência artificial para iniciantes e palestrante. Criou a Imersão IA na Prática e compartilha todo dia dicas práticas de IA e produtividade no Instagram <a href="https://instagram.com/andreiarfrois" style="color:var(--cy)">@andreiarfrois</a>. Ensina sem termo difícil e com exemplo da vida real.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <span class="tag">Capacitações presenciais</span>
+  <h2>Logística e escopo</h2>
+  <div class="duo">
+    <div>
+      <p class="lead" style="margin-bottom:18px">Para formatos presenciais, combinamos com a organização do evento:</p>
+      <div class="boxes"><div>Local com projeção e som</div><div>Internet estável</div><div>Notebook por participante (oficina e imersão)</div><div>Responsável local pela turma</div><div>Lista de presença</div><div>Acesso liberado às ferramentas de IA</div></div>
+    </div>
+    <div>
+      <p class="lead" style="margin-bottom:18px">As capacitações focam no uso prático e responsável. Não incluem, salvo proposta específica:</p>
+      <div class="boxes"><div>Desenvolvimento de sistemas</div><div>Automações complexas e integrações com API</div><div>Tratamento de dados sensíveis</div><div>Treinamento avançado de Excel, Power BI ou programação</div></div>
+      <p style="color:var(--mute);margin-top:18px;font-size:15.5px">Precisa ir além e implementar IA no seu negócio? Isso a Start desenvolve: <a href="#solucoes" style="color:var(--cy)">agentes, automações e aplicações sob medida</a>.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="contato" class="contato"><div class="wrap">
+  <span class="tag">Contato</span>
+  <h2>Fale com a gente</h2>
+  <p class="lead">Quer entender como a inteligência artificial pode ajudar no seu caso, ou levar uma capacitação para a sua equipe? Conte o que você precisa e a gente responde com uma proposta.</p>
+  <a class="btn cy" href="https://wa.me/5531993867548?text=Ol%C3%A1!%20Quero%20falar%20sobre%20IA%20com%20a%20Start." target="_blank">💬 Falar no WhatsApp</a>
+  <a class="btn gh" href="https://instagram.com/andreiarfrois" target="_blank" style="margin-left:10px">📸 @andreiarfrois</a>
+</div></section>
+
+<footer><b style="color:var(--txt)">Start</b> Soluções em Inteligência Artificial · Agentes · Automações · Aplicações · Capacitações · © 2026</footer>
 
 <script>
-  // Year
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Neural network canvas
-  const canvas = document.getElementById('bg-canvas');
-  const ctx = canvas.getContext('2d');
-  let W, H, nodes, mouse = { x: -999, y: -999 };
-  const NODE_COUNT = 60, MAX_DIST = 160, PRIMARY = '#00d4e8', PURPLE = '#7c63f5';
-
-  function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-
-  function initNodes() {
-    nodes = Array.from({ length: NODE_COUNT }, () => ({
-      x: Math.random() * W, y: Math.random() * H,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      r: Math.random() * 2 + 1.5,
-    }));
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    nodes.forEach(n => {
-      n.x += n.vx; n.y += n.vy;
-      if (n.x < 0 || n.x > W) n.vx *= -1;
-      if (n.y < 0 || n.y > H) n.vy *= -1;
-
-      // Mouse attraction
-      const dx = mouse.x - n.x, dy = mouse.y - n.y;
-      const md = Math.sqrt(dx*dx + dy*dy);
-      if (md < 120) { n.vx += dx * 0.0003; n.vy += dy * 0.0003; }
-
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = PRIMARY;
-      ctx.globalAlpha = 0.7;
-      ctx.fill();
-      ctx.globalAlpha = 1;
+  const P = [
+    ['Você (ou sua equipe) já usa IA no dia a dia?', 'usa'],
+    ['O foco é praticar, e não só conhecer o tema?', 'pratica'],
+    ['É para um grupo (empresa, escola, evento)?', 'grupo'],
+    ['Dá para reservar um dia inteiro ou mais?', 'tempo'],
+    ['Quer algo totalmente adaptado ao seu caso?', 'sob'],
+  ];
+  const r = {}, box = document.getElementById('perg');
+  P.forEach(([t, k]) => {
+    const d = document.createElement('div'); d.className = 'q';
+    d.innerHTML = `<p>${t}</p><button data-v="1">Sim</button><button data-v="0">Não</button>`;
+    d.querySelectorAll('button').forEach(b => b.onclick = () => {
+      d.querySelectorAll('button').forEach(x => x.classList.remove('on')); b.classList.add('on'); r[k] = b.dataset.v === '1'; calc();
     });
-
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
-        const d = Math.sqrt(dx*dx + dy*dy);
-        if (d < MAX_DIST) {
-          ctx.beginPath();
-          ctx.moveTo(nodes[i].x, nodes[i].y);
-          ctx.lineTo(nodes[j].x, nodes[j].y);
-          const alpha = (1 - d / MAX_DIST) * 0.25;
-          ctx.strokeStyle = i % 3 === 0 ? PURPLE : PRIMARY;
-          ctx.globalAlpha = alpha;
-          ctx.lineWidth = 0.8;
-          ctx.stroke();
-          ctx.globalAlpha = 1;
-        }
-      }
-    }
-    requestAnimationFrame(draw);
+    box.appendChild(d);
+  });
+  function calc() {
+    if (Object.keys(r).length < P.length) return;
+    let f, w;
+    if (!r.grupo) { f = r.sob ? 'Mentoria Canva + IA' : 'Turma IA no dia a dia'; w = r.sob ? 'Atendimento individual, adaptado ao seu perfil ou negócio.' : 'Turma pequena e ao vivo, ideal para começar do zero com acompanhamento.'; }
+    else if (!r.pratica) { f = 'Palestra'; w = 'Ótima para sensibilizar o grupo e abrir o tema com segurança.'; }
+    else if (r.tempo) { f = r.usa ? 'Imersão para equipes' : 'Oficina de IA aplicada à rotina'; w = r.usa ? 'Formação completa para quem já tem uma base e quer ir mais fundo.' : 'Um dia mão na massa, saindo com um assistente montado para a rotina.'; }
+    else { f = 'Workshop IA na prática'; w = 'Três horas com demonstração e exercícios nas tarefas do grupo.'; }
+    document.getElementById('res').innerHTML = `Recomendação: <b>${f}</b><br>${w} <a href="#contato" style="color:var(--cy)">Pedir proposta →</a>`;
   }
-
-  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-  window.addEventListener('resize', () => { resize(); initNodes(); });
-  resize(); initNodes(); draw();
 </script>
 </body>
 </html>
