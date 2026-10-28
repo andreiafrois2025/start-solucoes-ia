@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start Soluções em IA · Belo Horizonte</title>
+<meta name="description" content="Capacitação em inteligência artificial e automações para pequenas empresas, escolas e profissionais de Belo Horizonte e região.">
+<style>
+  @font-face { font-family: Elite; src: url(/novo/SpecialElite-Regular.ttf); font-display: swap; }
+  @font-face { font-family: Plex; src: url(/novo/IBMPlexSans-Regular.ttf); font-weight: 400; font-display: swap; }
+  @font-face { font-family: Plex; src: url(/novo/IBMPlexSans-SemiBold.ttf); font-weight: 600; font-display: swap; }
+  @font-face { font-family: Plex; src: url(/novo/IBMPlexSans-Bold.ttf); font-weight: 700; font-display: swap; }
+  :root {
+    --tinta: #22363C;     /* texto: petróleo bem escuro */
+    --pet: #456B74;       /* faixas e títulos de apoio */
+    --papel: #F3EDE4;     /* fundo com pontinhos, como os reels */
+    --folha: #FFFDF8;     /* a ficha de papel */
+    --lapis: #C07250;     /* o risco do lápis */
+    --marca: #E7C27A;     /* marca-texto (mostarda clara) */
+    --nevoa: #AABAC4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Plex, system-ui, sans-serif; color: var(--tinta); font-size: 18px; line-height: 1.6;
+    background: var(--papel) radial-gradient(circle, rgba(69,107,116,.16) 1.3px, transparent 1.5px) 0 0 / 24px 24px; }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--lapis); outline-offset: 3px; border-radius: 4px; }
+  .w { width: min(1120px, 90vw); margin: 0 auto; }
+  h1, h2, h3 { line-height: 1.12; }
+  h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 700; max-width: 22ch; }
+  p { max-width: 62ch; }
+
+  /* topo */
+  header { padding: 22px 0; }
+  header .w { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .marca { text-decoration: none; display: flex; align-items: baseline; gap: 10px; }
+  .marca b { font-family: Elite, monospace; font-weight: 400; font-size: 34px; }
+  .marca span { font-size: 15px; color: var(--pet); }
+  .zap { background: var(--tinta); color: var(--folha); text-decoration: none; font-weight: 600; font-size: 16px; padding: 11px 18px; border-radius: 10px; }
+  .zap:hover { background: var(--pet); }
+
+  /* abertura: texto + ficha riscada */
+  .abre { padding: 40px 0 90px; }
+  .abre .w { display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center; }
+  .abre h1 { font-size: clamp(38px, 5.4vw, 66px); font-weight: 700; letter-spacing: -.01em; }
+  .abre p { margin-top: 22px; font-size: 20px; color: #3c545b; }
+  .botoes { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .principal { background: var(--lapis); color: #fff; text-decoration: none; font-weight: 700; font-size: 18px; padding: 16px 24px; border-radius: 12px; box-shadow: 0 3px 0 #8f4f33; }
+  .principal:hover { background: #a95f40; }
+  .secundario { font-weight: 600; text-underline-offset: 4px; }
+
+  .ficha { position: relative; background: var(--folha); padding: 34px 34px 30px; transform: rotate(1.6deg);
+    box-shadow: 0 1px 0 #e4dccf, 0 18px 30px -18px rgba(34,54,60,.45);
+    background-image: repeating-linear-gradient(transparent 0 43px, #e6eef2 43px 45px); background-position: 0 70px; }
+  .fita { position: absolute; width: 110px; height: 30px; background: rgba(231,194,122,.7); top: -14px; }
+  .fita.e { left: 26px; transform: rotate(-6deg); } .fita.d { right: 30px; transform: rotate(5deg); }
+  .ficha h3 { font-family: Elite, monospace; font-weight: 400; font-size: 24px; margin-bottom: 14px; }
+  .ficha ul { list-style: none; }
+  .ficha li { position: relative; font-size: 18px; height: 45px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .tarefa { position: relative; }
+  .risco { position: absolute; left: -6px; right: -6px; top: 52%; height: 4px; background: var(--lapis); border-radius: 3px;
+    transform-origin: left; transform: scaleX(0) rotate(-1.2deg); animation: riscar .45s ease-out forwards; }
+  .ia { font-family: Elite, monospace; font-size: 15px; color: var(--pet); white-space: nowrap; opacity: 0; animation: surgir .3s ease-out forwards; }
+  .ficha li:nth-child(1) .risco { animation-delay: .6s } .ficha li:nth-child(1) .ia { animation-delay: .95s }
+  .ficha li:nth-child(2) .risco { animation-delay: 1.15s } .ficha li:nth-child(2) .ia { animation-delay: 1.5s }
+  .ficha li:nth-child(4) .risco { animation-delay: 1.7s } .ficha li:nth-child(4) .ia { animation-delay: 2.05s }
+  .ficha li:nth-child(5) .risco { animation-delay: 2.25s } .ficha li:nth-child(5) .ia { animation-delay: 2.6s }
+  .sobra { font-weight: 600; }
+  .ficha .rodape { margin-top: 12px; font-size: 15px; color: #5a6f75; }
+  @keyframes riscar { to { transform: scaleX(1) rotate(-1.2deg); } }
+  @keyframes surgir { to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .risco { animation: none; transform: scaleX(1) rotate(-1.2deg); } .ia { animation: none; opacity: 1; } }
+
+  /* o que a gente faz */
+  .faz { padding: 90px 0; background: var(--folha); border-top: 2px solid var(--tinta); border-bottom: 2px solid var(--tinta); }
+  .faz .intro { margin-top: 14px; color: #3c545b; }
+  .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 46px; }
+  .duas h3 { font-size: 24px; margin-bottom: 4px; }
+  .quem { font-size: 16px; color: var(--pet); margin-bottom: 18px; }
+  table { width: 100%; border-collapse: collapse; font-size: 17px; }
+  th { text-align: left; font-weight: 600; font-size: 15px; color: var(--pet); padding: 0 0 8px; border-bottom: 2px solid var(--tinta); }
+  td { padding: 13px 10px 13px 0; border-bottom: 1px solid #d9d1c4; vertical-align: top; }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  dl { display: grid; grid-template-columns: 1fr; gap: 0; }
+  dl div { padding: 12px 0; border-bottom: 1px solid #d9d1c4; }
+  dt { font-weight: 600; } dd { font-size: 16.5px; color: #4a5f65; }
+
+  /* turma: ingresso */
+  .turma { padding: 90px 0; }
+  .ingresso { display: grid; grid-template-columns: 1fr 300px; background: var(--pet); color: #fff; border-radius: 20px; overflow: hidden; position: relative; }
+  .ingresso .a { padding: 44px 46px; }
+  .ingresso h2 { color: #fff; }
+  .ingresso p { margin-top: 14px; color: #e3ecef; }
+  .ingresso ul { margin: 18px 0 0 20px; color: #e3ecef; }
+  .ingresso li { margin: 4px 0; }
+  .canhoto { background: var(--marca); color: var(--tinta); padding: 40px 30px; border-left: 3px dashed var(--pet); display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+  .canhoto .datas { font-family: Elite, monospace; font-size: 30px; line-height: 1.15; }
+  .canhoto .preco { font-size: 44px; font-weight: 700; margin-top: 10px; line-height: 1; }
+  .canhoto .depois { font-size: 15px; }
+  .canhoto a { margin-top: 16px; text-align: center; background: var(--tinta); color: #fff; text-decoration: none; font-weight: 700; padding: 14px; border-radius: 10px; }
+  .canhoto a:hover { background: #000; }
+  .canhoto small { font-size: 13.5px; }
+
+  /* passos */
+  .passos { padding: 30px 0 90px; }
+  ol.linha { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 40px; counter-reset: p; }
+  ol.linha li { counter-increment: p; border-top: 3px solid var(--tinta); padding-top: 16px; }
+  ol.linha li::before { content: counter(p); font-family: Elite, monospace; font-size: 30px; color: var(--lapis); display: block; }
+  ol.linha b { display: block; font-size: 19px; margin: 4px 0; }
+  ol.linha span { font-size: 16px; color: #4a5f65; }
+
+  /* pessoas */
+  .gente { padding: 90px 0; background: var(--folha); border-top: 2px solid var(--tinta); }
+  .pessoas { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 40px; }
+  .pessoa { display: grid; grid-template-columns: 96px 1fr; gap: 20px; align-items: start; }
+  .pessoa img, .inicial { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 3px solid var(--tinta); }
+  .inicial { display: grid; place-items: center; font-family: Elite, monospace; font-size: 40px; background: var(--nevoa); }
+  .pessoa h3 { font-size: 22px; } .pessoa .papel { color: var(--pet); font-size: 16px; margin-bottom: 8px; }
+  .pessoa p { font-size: 17px; }
+
+  /* contato */
+  .contato { padding: 90px 0 70px; }
+  .contato .w { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: end; }
+  .tel { font-size: clamp(30px, 4.4vw, 48px); font-weight: 700; text-decoration: none; display: inline-block; border-bottom: 4px solid var(--lapis); }
+  footer { border-top: 2px solid var(--tinta); padding: 22px 0 30px; font-size: 15px; color: #4a5f65; }
+  footer .w { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+  @media (max-width: 860px) {
+    .abre .w, .duas, .pessoas, .contato .w { grid-template-columns: 1fr; gap: 40px; }
+    .ingresso { grid-template-columns: 1fr; }
+    .canhoto { border-left: 0; border-top: 3px dashed var(--pet); }
+    ol.linha { grid-template-columns: 1fr 1fr; }
+    .ficha { transform: rotate(.8deg); padding: 30px 22px 24px; }
+    .marca span { display: none; }
+    td:first-child { white-space: normal; }
+  }
+  @media (max-width: 480px) { ol.linha { grid-template-columns: 1fr; } .ingresso .a { padding: 32px 24px; } body { font-size: 17px; } }
+</style>
+</head>
+<body>
+<header><div class="w">
+  <a class="marca" href="#"><b>Start</b><span>Soluções em IA · Belo Horizonte</span></a>
+  <a class="zap" href="https://wa.me/5531993867548?text=Ol%C3%A1!%20Quero%20falar%20sobre%20IA%20com%20a%20Start.">Falar no WhatsApp</a>
+</div></header>
+
+<main>
+<section class="abre"><div class="w">
+  <div>
+    <h1>Sua equipe passa horas em tarefas que a IA já faz.</h1>
+    <p>Ensinamos a usar a inteligência artificial no dia a dia e montamos as automações que tiram o trabalho repetitivo da mesa de vocês. Para pequenas empresas, escolas e profissionais de BH e região.</p>
+    <div class="botoes">
+      <a class="principal" href="https://wa.me/5531993867548?text=Ol%C3%A1!%20Quero%20marcar%20o%20diagn%C3%B3stico%20gratuito.">Marcar diagnóstico gratuito de 20 min</a>
+      <a class="secundario" href="#turma">Ver a turma aberta de novembro</a>
+    </div>
+  </div>
+  <div class="ficha" role="img" aria-label="Lista de tarefas de uma empresa: responder as mesmas perguntas no WhatsApp, lembrar clientes da consulta, escrever posts e resumir reuniões ficam com a IA. Atender o cliente e decidir ficam com a equipe.">
+    <span class="fita e"></span><span class="fita d"></span>
+    <h3>Rotina da semana</h3>
+    <ul>
+      <li><span class="tarefa">Responder as mesmas dúvidas<span class="risco"></span></span><span class="ia">a IA faz</span></li>
+      <li><span class="tarefa">Lembrar cliente da consulta<span class="risco"></span></span><span class="ia">a IA faz</span></li>
+      <li><span class="tarefa sobra">Atender o cliente com calma</span></li>
+      <li><span class="tarefa">Escrever os posts da semana<span class="risco"></span></span><span class="ia">a IA faz</span></li>
+      <li><span class="tarefa">Resumir a reunião de segunda<span class="risco"></span></span><span class="ia">a IA faz</span></li>
+      <li><span class="tarefa sobra">Decidir o que importa</span></li>
+    </ul>
+    <p class="rodape">O que sobra é o trabalho que só a sua equipe faz.</p>
+  </div>
+</div></section>
+
+<section class="faz" id="servicos"><div class="w">
+  <h2>Dois jeitos de trazer a IA para a sua empresa</h2>
+  <p class="intro">Você pode começar ensinando a equipe, automatizando uma tarefa, ou as duas coisas.</p>
+  <div class="duas">
+    <div>
+      <h3>Capacitação</h3>
+      <p class="quem">Com a Andréia Frois, educadora em IA e palestrante</p>
+      <table>
+        <thead><tr><th>Formato</th><th>Duração</th><th>Para quê</th></tr></thead>
+        <tbody>
+          <tr><td>Palestra</td><td>1h a 1h30</td><td>Mostrar ao grupo o que a IA já faz e os cuidados</td></tr>
+          <tr><td>Workshop</td><td>3h</td><td>Praticar com as tarefas reais da equipe</td></tr>
+          <tr><td>Oficina</td><td>6h</td><td>Cada pessoa sai com um assistente montado</td></tr>
+          <tr><td>Imersão</td><td>2 dias</td><td>Formação completa para equipes</td></tr>
+          <tr><td>Mentoria</td><td>individual</td><td>Conteúdo com ChatGPT, Claude e Canva, R$ 450</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>Implementação</h3>
+      <p class="quem">Com o Hwaendrix, arquiteto de soluções em IA</p>
+      <dl>
+        <div><dt>Atendimento no WhatsApp</dt><dd>Responde a qualquer hora e chama uma pessoa quando precisa.</dd></div>
+        <div><dt>Agenda e lembretes</dt><dd>Confirmações automáticas, menos faltas.</dd></div>
+        <div><dt>Resumo de reuniões e documentos</dt><dd>O essencial de textos longos em poucos minutos.</dd></div>
+        <div><dt>Triagem de e-mails e relatórios</dt><dd>Mensagens organizadas e números reunidos sem copiar e colar.</dd></div>
+        <div><dt>Assistente da equipe</dt><dd>Tira dúvidas sobre os processos da empresa.</dd></div>
+      </dl>
+    </div>
+  </div>
+</div></section>
+
+<section class="turma" id="turma"><div class="w">
+  <div class="ingresso">
+    <div class="a">
+      <h2>Turma aberta: IA no dia a dia</h2>
+      <p>Três noites ao vivo e online para quem nunca usou IA ou usou e travou. Sem termo difícil, com exercício em cada encontro.</p>
+      <ul>
+        <li>Pedir do jeito certo e receber resposta útil</li>
+        <li>Escrever e-mails e textos em minutos, com a sua cara</li>
+        <li>Organizar a semana com ajuda da IA</li>
+      </ul>
+    </div>
+    <div class="canhoto">
+      <span class="datas">3, 4 e 5 de novembro</span>
+      <span>terça a quinta, 19h30, online</span>
+      <span class="preco">R$ 127</span>
+      <span class="depois">preço de lançamento até 02/11 (depois R$ 197)</span>
+      <a href="https://pay.kiwify.com.br/5h5M0Ul">Garantir minha vaga</a>
+      <small>Pagamento pela Kiwify, cartão ou Pix, garantia de 7 dias</small>
+    </div>
+  </div>
+</div></section>
+
+<section class="passos"><div class="w">
+  <h2>Como funciona para empresas</h2>
+  <ol class="linha">
+    <li><b>Diagnóstico</b><span>Conversa gratuita de 20 minutos sobre a sua rotina.</span></li>
+    <li><b>Proposta</b><span>O que será feito, prazo e valor, por escrito.</span></li>
+    <li><b>Execução</b><span>Capacitamos a equipe e/ou colocamos a automação para funcionar.</span></li>
+    <li><b>Acompanhamento</b><span>Ajustes e apoio depois da entrega.</span></li>
+  </ol>
+</div></section>
+
+<section class="gente" id="equipe"><div class="w">
+  <h2>Quem faz</h2>
+  <div class="pessoas">
+    <div class="pessoa">
+      <img src="/novo/andreia.jpg" alt="Andréia Frois" width="96" height="96">
+      <div><h3>Andréia Frois</h3><div class="papel">Capacitação e palestras</div>
+        <p>Educadora em inteligência artificial para iniciantes, criadora da Imersão IA na Prática. Mostra todo dia no Instagram <a href="https://instagram.com/andreiarfrois">@andreiarfrois</a> como usar IA sem complicação.</p></div>
+    </div>
+    <div class="pessoa">
+      <div class="inicial" aria-hidden="true">H</div>
+      <div><h3>Hwaendrix</h3><div class="papel">Automações e soluções</div>
+        <p>Desenvolve agentes de IA, automações e integrações sob medida, e cuida do atendimento às empresas do primeiro contato à entrega.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="contato" id="contato"><div class="w">
+  <div>
+    <h2>Conte o que toma tempo na sua empresa</h2>
+    <p style="margin-top:14px">A gente responde com uma ideia do que dá para fazer, sem compromisso.</p>
+  </div>
+  <div><a class="tel" href="https://wa.me/5531993867548?text=Ol%C3%A1!%20Quero%20falar%20sobre%20IA%20com%20a%20Start.">(31) 99386-7548</a><p style="margin-top:8px;font-size:16px">WhatsApp</p></div>
+</div></section>
+</main>
+
+<footer><div class="w"><span>Start Soluções em IA, Belo Horizonte e região. CNPJ 64.502.258/0001-79</span><a href="https://instagram.com/andreiarfrois">Instagram</a></div></footer>
+</body>
+</html>
